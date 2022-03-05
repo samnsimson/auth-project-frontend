@@ -90,6 +90,10 @@ export const Login = () => {
                                             block
                                             color="primary"
                                             onClick={login}
+                                            disabled={
+                                                !formData.username ||
+                                                !formData.password
+                                            }
                                         >
                                             Login
                                         </Button>
