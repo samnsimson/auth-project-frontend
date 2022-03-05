@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 const Homepage = () => {
     const { state } = useLocation();
     const { id } = state;
-    const [checkedIn, setCheckedIn] = useState(false);
+    const [checkedIn, setCheckedIn] = useState("");
     const [students, setStudents] = useState([]);
 
     const markAttendance = async () => {
@@ -16,7 +16,7 @@ const Homepage = () => {
             const currentTime = moment();
             const url = `http://localhost:4000/v1/user/checkin`;
             const result = await axios.post(url, { id: id, time: currentTime });
-            if (result.data) setCheckedIn(!checkedIn);
+            if (result.data) setCheckedIn(result.data);
         } catch (error) {}
     };
 
@@ -35,6 +35,10 @@ const Homepage = () => {
     }, []);
 
     useEffect(() => {
+        if (checkedIn) fetchData();
+    }, [checkedIn]);
+
+    useEffect(() => {
         console.log(students);
     }, [students]);
 
@@ -45,12 +49,12 @@ const Homepage = () => {
                 <Container className="p-3 d-flex justify-content-center">
                     <Col md={8}>
                         <Button
-                            color={checkedIn ? "danger" : "success"}
+                            color="success"
                             className="float-end mb-3"
                             onClick={markAttendance}
+                            disabled={!!checkedIn}
                         >
-                            Mark Attendance:{" "}
-                            {checkedIn ? `Check-Out` : `Check-In`}
+                            Mark Attendance
                         </Button>
                         <div className="clearfix"></div>
                         <Table
@@ -64,7 +68,7 @@ const Homepage = () => {
                                 <tr>
                                     <th>#</th>
                                     <th>Student Name</th>
-                                    <th>Checked-In Date</th>
+                                    <th>Date</th>
                                     <th>Checked-In Time</th>
                                 </tr>
                             </thead>
