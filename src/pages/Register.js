@@ -59,6 +59,32 @@ export const Register = () => {
                             <CardText>
                                 <Form inline>
                                     <FormGroup>
+                                        <Label for="firstname" hidden>
+                                            First Name
+                                        </Label>
+                                        <Input
+                                            id="firstname"
+                                            name="firstname"
+                                            placeholder="First Name"
+                                            type="text"
+                                            value={formData.firstname ?? ""}
+                                            onChange={(e) => handleChange(e)}
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label for="lastname" hidden>
+                                            Last Name
+                                        </Label>
+                                        <Input
+                                            id="lastname"
+                                            name="lastname"
+                                            placeholder="Last Name"
+                                            type="text"
+                                            value={formData.lastname ?? ""}
+                                            onChange={(e) => handleChange(e)}
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
                                         <Label for="username" hidden>
                                             Username
                                         </Label>
@@ -91,6 +117,8 @@ export const Register = () => {
                                             color="primary"
                                             onClick={login}
                                             disabled={
+                                                !formData.firstname ||
+                                                !formData.lastname ||
                                                 !formData.username ||
                                                 !formData.password
                                             }

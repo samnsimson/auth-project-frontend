@@ -37,7 +37,7 @@ export const Verify = () => {
                 secret: user.base32,
                 token: formData.code,
             });
-            if (verified) navigate("/home");
+            if (verified) navigate("/home", { state: { id: id } });
         } catch (error) {}
     };
 
