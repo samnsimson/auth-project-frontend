@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import backgroundImage from "../images/background.jpg";
 import {
     Row,
     Card,
@@ -24,7 +25,14 @@ export const Mfa = () => {
     }, [id, qrcode]);
 
     return (
-        <Row style={{ height: "100vh" }}>
+        <Row
+            style={{
+                height: "100vh",
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundPosition: `center center`,
+                backgroundSize: `cover`,
+            }}
+        >
             <Container className="d-flex h-100 align-items-center justify-content-center">
                 <Col md={6}>
                     <Card>

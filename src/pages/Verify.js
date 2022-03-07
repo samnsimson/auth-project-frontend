@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import backgroundImage from "../images/background.jpg";
 import {
     Button,
     Card,
@@ -54,7 +55,14 @@ export const Verify = () => {
     }, [id]);
 
     return (
-        <Row style={{ height: "100vh" }}>
+        <Row
+            style={{
+                height: "100vh",
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundPosition: `center center`,
+                backgroundSize: `cover`,
+            }}
+        >
             <Container className="h-100 d-flex align-items-center justify-content-center">
                 <Col md={3}>
                     <Card>
